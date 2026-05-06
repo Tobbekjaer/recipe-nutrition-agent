@@ -97,3 +97,53 @@ def get_nutrition(recipe_id: int) -> dict:
         result = {"error": f"API request failed: {str(e)}"}
         log_tool_call("get_nutrition", {"recipe_id": recipe_id}, result)
         return result
+
+
+# Gets recipe preparation steps
+def get_recipe_steps(recipe_id: int) -> dict:
+    """
+        Fetch step-by-step cooking instructions for a recipe by its Spoonacular ID.
+        Returns a list of steps with instructions.
+        """
+    if not recipe_id:
+        result = {"error": "No recipe ID provided."}
+        log_tool_call("get_recipe_steps", {"recipe_id": recipe_id}, result)
+        return result
+
+    url = f"{BASE_URL}/recipes/{recipe_id}/analyzedInstructions"
+    params = {"apiKey": SPOONACULAR_API_KEY}
+
+    try:
+        response = requests.get(url, params=params, timeout=10)
+        response.raise_for_status()
+        data = response.json()
+
+        if not data or not data[0].get("steps"):
+            result = {"error": f"No instructions found for recipe ID: {recipe_id}"}
+            log_tool_call("get_recipe_steps", {"recipe_id": recipe_id}, result)
+            return result
+        # Extract step number and instruction text only
+        steps = [
+            {"step": s["number"], "instruction": s["step"]}
+            for s in data[0]["steps"]
+        ]
+
+        result = {"recipe_id": recipe_id, "steps": steps}
+        log_tool_call("get_recipe_steps", {"recipe_id": recipe_id}, result)
+        return result
+
+    except requests.exceptions.Timeout:
+        result = {"error": "Request timed out. Please try again."}
+        log_tool_call("get_recipe_steps", {"recipe_id": recipe_id}, result)
+        return result
+    except requests.exceptions.RequestException as e:
+        result = {"error": f"API request failed: {str(e)}"}
+        return result
+
+
+
+
+
+
+
+
