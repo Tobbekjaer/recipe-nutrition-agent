@@ -5,6 +5,7 @@
 # Python cache
 __pycache__/
 *.py[cod]
+*.db
 
 # PyCharm
 .idea/
