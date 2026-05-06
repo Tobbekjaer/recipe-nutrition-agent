@@ -1,0 +1,3 @@
+pyautogen
+request
+python-dotenv
