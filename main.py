@@ -1,8 +1,6 @@
 from dotenv import load_dotenv
-from agents import create_agents
-
 load_dotenv()  # Load API keys from .env
-
+from agents import create_agents
 
 def run_agent(user_message: str) -> None:
     """Run the Recipe & Nutrition Agent with a given user message."""
