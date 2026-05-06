@@ -134,4 +134,4 @@ Every tool call is automatically logged to `tool_calls.log` with timestamp, inpu
 }
 ```
 
-The log file is excluded from Git via `.gitignore`.
+The log file is committed to the repository as documentation of the evaluation runs.
