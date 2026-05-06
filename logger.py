@@ -1,8 +1,9 @@
 import json
 import os
 from datetime import datetime
+from pathlib import Path
 
-LOG_FILE = "tool_calls.log"
+LOG_FILE = Path(__file__).parent / "tool_calls.log"
 
 def log_tool_call(tool_name: str, inputs: dict, output: dict) -> None:
     """
