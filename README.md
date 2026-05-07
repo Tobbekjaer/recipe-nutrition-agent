@@ -101,6 +101,8 @@ if __name__ == "__main__":
     run_agent(test["input"])
 ```
 
+**Evaluation results** from all 10 test cases are documented in `evaluation/results.md`.
+
 ---
 
 ## Project Structure
