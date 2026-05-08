@@ -90,7 +90,7 @@ def run_all_tests():
 
 if __name__ == "__main__":
     # Run a single test by index (0 = test 1, 1 = test 2, etc.)
-    # test = TEST_CASES[2]
-    # print(f"\n[Test {test['id']}] [{test['category'].upper()}] {test['description']}")
-    # run_agent(test["input"])
-    run_all_tests()
+    test = TEST_CASES[7]
+    print(f"\n[Test {test['id']}] [{test['category'].upper()}] {test['description']}")
+    run_agent(test["input"])
+    # run_all_tests()
